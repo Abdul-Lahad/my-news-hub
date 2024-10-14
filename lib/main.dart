@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_news_hub/screens/HomeScreen.dart';
 import 'package:my_news_hub/screens/LoginScreen.dart';
+import 'package:my_news_hub/screens/SignupScreen.dart';
 
 void main() {
   runApp(MyApplication());
@@ -15,6 +16,7 @@ class MyApplication extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: HomeScreen(),
+      // home: SignupScreen(),
       home: LoginScreen(),
     );
   }

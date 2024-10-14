@@ -50,27 +50,46 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My News Hub")),
-      body: loading
-          ? Center(child: CircularProgressIndicator())
-          : RefreshIndicator(
-              onRefresh: getNews,
-              child: ListView.builder(
-                itemCount: articles.length,
-                shrinkWrap: true,
-                physics: AlwaysScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return NewsTile(
-                    articleUrl: articles[index]['url'],
-                    title: articles[index]['title'],
-                    description: articles[index]['description'],
-                    imgUrl: articles[index]['urlToImage'] ??
-                        "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",
-                    content: articles[index]['content'],
-                  );
-                },
-              ),
+        appBar: AppBar(
+          title: Text(
+            "My News Hub",
+            style: TextStyle(
+              color: Colors.white, // Change font color to white
+              fontWeight: FontWeight.bold, // Optional: Make it bold
+              fontSize: 22, // Optional: Adjust the font size
             ),
-    );
+          ),
+          backgroundColor: Color(0xFF424242), // Set the background color
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF424242), Color(0xFF424242)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: loading
+              ? Center(child: CircularProgressIndicator())
+              : RefreshIndicator(
+                  onRefresh: getNews,
+                  child: ListView.builder(
+                    itemCount: articles.length,
+                    shrinkWrap: true,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return NewsTile(
+                        articleUrl: articles[index]['url'],
+                        title: articles[index]['title'],
+                        description: articles[index]['description'],
+                        imgUrl: articles[index]['urlToImage'] ??
+                            "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",
+                        content: articles[index]['content'],
+                      );
+                    },
+                  ),
+                ),
+        ));
   }
 }

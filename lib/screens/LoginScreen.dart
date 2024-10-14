@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue, Colors.blueAccent],
+            colors: [Color(0xFF48CFCB), Color(0xFF229799)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Email',
-                  prefixIcon: Icon(Icons.email, color: Colors.blueAccent),
+                  prefixIcon: Icon(Icons.email, color: Color(0xFF424242)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,
@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Password',
-                  prefixIcon: Icon(Icons.lock, color: Colors.blueAccent),
+                  prefixIcon: Icon(Icons.lock, color: Color(0xFF424242)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,

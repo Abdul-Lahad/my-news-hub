@@ -14,7 +14,7 @@ class SignupScreen extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.purple, Colors.purpleAccent],
+            colors: [Color(0xFF424242), Color(0xFF424242)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -40,7 +40,7 @@ class SignupScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Email',
-                  prefixIcon: Icon(Icons.email, color: Colors.purpleAccent),
+                  prefixIcon: Icon(Icons.email, color: Color(0xFF229799)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,
@@ -56,7 +56,7 @@ class SignupScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Password',
-                  prefixIcon: Icon(Icons.lock, color: Colors.purpleAccent),
+                  prefixIcon: Icon(Icons.lock, color: Color(0xFF229799)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,
@@ -73,7 +73,7 @@ class SignupScreen extends StatelessWidget {
                   fillColor: Colors.white,
                   hintText: 'Confirm Password',
                   prefixIcon:
-                      Icon(Icons.lock_outline, color: Colors.purpleAccent),
+                      Icon(Icons.lock_outline, color: Color(0xFF229799)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,

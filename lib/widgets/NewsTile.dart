@@ -21,6 +21,7 @@ class NewsTile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
+      color: Color(0xFFF5F5F5),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
