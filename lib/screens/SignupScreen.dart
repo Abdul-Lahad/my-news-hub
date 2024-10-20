@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_news_hub/screens/auth_service.dart';
 
 class SignupScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+
+  final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +88,23 @@ class SignupScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Handle signup logic
+                  String email = emailController.text;
+                  String password = passwordController.text;
+                  String confirmPassword = confirmPasswordController.text;
+
+                  if (password != confirmPassword) {
+                    print("Passwords do not match");
+                    return;
+                  }
+
+                  authService.signUp(email, password).then((user) {
+                    if (user != null) {
+                      print("Signup successful");
+                      Navigator.pop(context); // Go back to login screen
+                    } else {
+                      print("Signup failed");
+                    }
+                  });
                 },
                 child: Padding(
                   padding:

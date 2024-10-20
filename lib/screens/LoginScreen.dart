@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_news_hub/screens/HomeScreen.dart';
+import 'package:my_news_hub/screens/auth_service.dart';
 import 'SignupScreen.dart'; // Import SignupScreen for navigation
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +70,20 @@ class LoginScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Handle login logic
+                  authService.signIn(
+                    emailController.text,
+                    passwordController.text,
+                  );
+
+                  // Clear input fields
+                  emailController.clear();
+                  passwordController.clear();
+
+                  // Navigate to HomeScreen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
                 },
                 child: Padding(
                   padding:
