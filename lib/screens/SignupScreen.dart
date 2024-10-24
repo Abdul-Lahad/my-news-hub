@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_news_hub/screens/auth_service.dart';
+import 'package:email_validator/email_validator.dart'; // Import email_validator for email validation
 
 class SignupScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -8,6 +9,13 @@ class SignupScreen extends StatelessWidget {
       TextEditingController();
 
   final AuthService authService = AuthService();
+
+  bool isPasswordValid(String password) {
+    // Check password strength: at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character
+    final passwordRegex = RegExp(
+        r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+    return passwordRegex.hasMatch(password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,21 +96,42 @@ class SignupScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Handle signup logic
-                  String email = emailController.text;
+                  String email = emailController.text.trim();
                   String password = passwordController.text;
                   String confirmPassword = confirmPasswordController.text;
 
-                  if (password != confirmPassword) {
-                    print("Passwords do not match");
+                  if (!EmailValidator.validate(email)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Please enter a valid email")),
+                    );
                     return;
                   }
 
+                  if (!isPasswordValid(password)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text(
+                              "Password must be at least 8 characters, include an uppercase letter, a number, and a special character")),
+                    );
+                    return;
+                  }
+
+                  if (password != confirmPassword) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Passwords do not match")),
+                    );
+                    return;
+                  }
+
+                  // Perform signup via auth service
                   authService.signUp(email, password).then((user) {
                     if (user != null) {
                       print("Signup successful");
                       Navigator.pop(context); // Go back to login screen
                     } else {
-                      print("Signup failed");
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Signup failed. Try again.")),
+                      );
                     }
                   });
                 },
