@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     String url =
-        'https://newsapi.org/v2/top-headlines?country=us&category=$selectedCategory&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=084c6f0cc3284f6888038303d26972e0'; // Replace with your API key
+        'https://newsapi.org/v2/top-headlines?country=us&category=$selectedCategory&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=API-KEY'; // Replace with your API key
 
     try {
       var response = await http.get(Uri.parse(url));
